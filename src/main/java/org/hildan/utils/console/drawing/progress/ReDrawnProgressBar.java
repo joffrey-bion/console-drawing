@@ -3,18 +3,16 @@ package org.hildan.utils.console.drawing.progress;
 import org.hildan.utils.console.drawing.Drawing;
 
 /**
- * A progress bar that is redrawn at each update. It does not need a header to show
- * the user where the bar stops because the end of the bar can be drawn even if the
- * progress is not complete.
+ * A progress bar that is redrawn at each update. It does not need a header to show the user where
+ * the bar stops because the end of the bar can be drawn even if the progress is not complete.
  * <p>
  * The bar can be redrawn in 2 ways (corresponding to 2 {@link ReDrawMode}s):
  * </p>
  * <ul>
- * <li>{@link ReDrawMode#ERASE}: the previous progress bar is erased with backspace
- * or carriage return characters.</li>
- * <li> {@link ReDrawMode#NEW_LINE}: prints each new update of the progress bar on a
- * new line. Useful to redraw the bar even in Eclipse console, where
- * {@link ReDrawMode#ERASE} mode can't be used.</li>
+ * <li>{@link ReDrawMode#ERASE}: the previous progress bar is erased with backspace or carriage
+ * return characters.</li>
+ * <li> {@link ReDrawMode#NEW_LINE}: prints each new update of the progress bar on a new line. Useful
+ * to redraw the bar even in Eclipse console, where {@link ReDrawMode#ERASE} mode can't be used.</li>
  * </ul>
  */
 public class ReDrawnProgressBar extends AbstractProgressBar {
@@ -26,13 +24,16 @@ public class ReDrawnProgressBar extends AbstractProgressBar {
      */
     public static enum ReDrawMode {
         /**
-         * Erase the previous progress bar with backspace or carriage return
-         * characters.
+         * Erase the previous progress bar with backspace or carriage return characters.
+         * <p>
+         * <b>Note:</b> this mode will not behave as expected if used to print in Eclipse's console,
+         * because Eclipse does not support control characters backspace (\b) and carriage return
+         * (\r).
          */
         ERASE,
         /**
-         * Prints each new update of the progress bar on a new line. Useful to redraw
-         * the bar even in Eclipse console, where {@link #ERASE} mode can't be used.
+         * Prints each new update of the progress bar on a new line. Useful to redraw the bar even
+         * in Eclipse console, where {@link #ERASE} mode can't be used.
          */
         NEW_LINE;
     }
@@ -45,8 +46,8 @@ public class ReDrawnProgressBar extends AbstractProgressBar {
      * @param total
      *            The number of elements this {@code ProgressBar} represents.
      * @param length
-     *            The number of characters used to display this
-     *            {@code AbstractProgressBar} when it is complete.
+     *            The number of characters used to display this {@code AbstractProgressBar} when it
+     *            is complete.
      * @param mode
      *            The way to redraw this progress bar.
      */
@@ -76,8 +77,8 @@ public class ReDrawnProgressBar extends AbstractProgressBar {
     }
 
     /**
-     * Prints backspace characters to erase the last progress bar. Does not work
-     * properly in Eclipse.
+     * Prints backspace characters to erase the last progress bar. Does not work properly in
+     * Eclipse.
      */
     protected void eraseWholeBar() {
         if (TEST_CR) {
@@ -113,5 +114,4 @@ public class ReDrawnProgressBar extends AbstractProgressBar {
             printStream.println();
         }
     }
-
 }

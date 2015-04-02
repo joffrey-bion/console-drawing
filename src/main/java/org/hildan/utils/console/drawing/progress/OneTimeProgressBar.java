@@ -1,9 +1,9 @@
 package org.hildan.utils.console.drawing.progress;
 
 /**
- * A progress bar that does not need to be erased by backspaces and does not create
- * new lines at each update. For the user to be able to visualize the length of such
- * a bar, it needs to be used with a header.
+ * A progress bar that does not need to be erased by backspaces and does not create new lines at
+ * each update. For the user to be able to visualize the length of such a bar, it needs to be used
+ * with a header.
  *
  * @see HeaderStyle
  * @see AbstractProgressBar#setHeaderStyle(HeaderStyle)
@@ -16,10 +16,9 @@ public class OneTimeProgressBar extends AbstractProgressBar {
      * Creates a new {@link OneTimeProgressBar} with a default header.
      *
      * @param total
-     *            The number of elements this {@code ProgressBar} represents.
+     *            The number of elements this progress bar represents.
      * @param length
-     *            The number of characters used to display this
-     *            {@code AbstractProgressBar} when it is complete.
+     *            The number of characters used to display this progress bar when it is complete.
      */
     public OneTimeProgressBar(int total, int length) {
         super(total, length);
