@@ -1,10 +1,13 @@
+plugins {
+    id "com.jfrog.bintray" version "1.0"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
 group = 'org.hildan.utils'
 version = '1.0.0'
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '1.6'
 
 repositories {
     mavenCentral()
@@ -28,4 +31,23 @@ artifacts {
     archives jar
     archives sourcesJar
     archives javadocJar
+}
+
+bintray {
+	user = project.bintrayUsername //taken from gradle.properties
+	key = project.bintrayApiKey //taken from gradle.properties
+	configurations = ['archives']
+	
+	pkg {
+	    repo = project.bintrayRepo //taken from gradle.properties
+	    name = project.name
+	    desc = 'A library to make your console output look nice, because little things matter.'
+	    websiteUrl = 'https://github.com/joffrey-bion/console-drawing'
+	    issueTrackerUrl = 'https://github.com/joffrey-bion/console-drawing/issues'
+	    vcsUrl = 'https://github.com/joffrey-bion/console-drawing.git'
+	    licenses = ['MIT']
+	    version {
+	        name = project.version //Bintray logical version name
+	    }
+	}
 }
