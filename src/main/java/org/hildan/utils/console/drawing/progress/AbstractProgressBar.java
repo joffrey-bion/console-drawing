@@ -45,6 +45,9 @@ public abstract class AbstractProgressBar {
     }
 
     /**
+     * Gets the {@link PrintStream} currently used to print to when drawing this progress bar. By
+     * default, it is set to {@link System#out}.
+     *
      * @return the current {@link PrintStream} in use.
      */
     public PrintStream getPrintStream() {
@@ -52,6 +55,9 @@ public abstract class AbstractProgressBar {
     }
 
     /**
+     * Sets the {@link PrintStream} to print to when drawing this progress bar. By default, it is
+     * set to {@link System#out}.
+     *
      * @param printStream
      *            the {@link PrintStream} to use to print this bar
      */
