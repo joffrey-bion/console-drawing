@@ -45,7 +45,7 @@ public class GridDrawer {
      * Creates a new {@code GridDrawer} with default borders.
      */
     public GridDrawer() {
-        this(BorderType.LIGHT, BorderType.HEAVY);
+        this(BorderType.LIGHT, BorderType.LIGHT);
     }
 
     /**
