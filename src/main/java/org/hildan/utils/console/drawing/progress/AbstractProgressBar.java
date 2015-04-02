@@ -13,15 +13,17 @@ public abstract class AbstractProgressBar {
     protected PrintStream printStream;
 
     protected BarStyle barStyle;
+
     protected HeaderStyle headerStyle;
 
     /**
      * The number of elements this {@code AbstractProgressBar} represents.
      */
     protected final int total;
+
     /**
-     * The number of characters used to display this {@code AbstractProgressBar} when
-     * it is complete.
+     * The number of characters used to display this {@code AbstractProgressBar} when it is
+     * complete.
      */
     protected final int length;
 
@@ -31,8 +33,8 @@ public abstract class AbstractProgressBar {
      * @param total
      *            The number of elements this {@code AbstractProgressBar} represents.
      * @param length
-     *            The number of characters used to display this
-     *            {@code AbstractProgressBar} when it is complete.
+     *            The number of characters used to display this {@code AbstractProgressBar} when it
+     *            is complete.
      */
     public AbstractProgressBar(int total, int length) {
         this.length = length;
@@ -73,8 +75,7 @@ public abstract class AbstractProgressBar {
     }
 
     /**
-     * @return the {@link HeaderStyle} currently used for the header of this progress
-     *         bar.
+     * @return the {@link HeaderStyle} currently used for the header of this progress bar.
      */
     public HeaderStyle getHeaderStyle() {
         return headerStyle;

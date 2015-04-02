@@ -1,6 +1,5 @@
 package org.hildan.utils.console.drawing;
 
-
 /**
  * An utility class containing interesting characters and methods to help drawing stuff in a
  * console.
@@ -96,5 +95,4 @@ public class Drawing {
         }
         return sb.toString();
     }
-
 }

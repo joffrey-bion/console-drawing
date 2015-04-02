@@ -12,21 +12,31 @@ public class GridDrawer {
 
     // external borders
     private char horizontalExt;
+
     private char verticalExt;
+
     private char topLeftCorner;
+
     private char botLeftCorner;
+
     private char topRightCorner;
+
     private char botRightCorner;
 
     // internal borders
     private char horizontalInt;
+
     private char verticalInt;
+
     private char cross;
 
     // T-borders
     private char downT;
+
     private char upT;
+
     private char rightT;
+
     private char leftT;
 
     /**
@@ -39,6 +49,7 @@ public class GridDrawer {
     }
 
     private BorderType internalType;
+
     private BorderType externalType;
 
     /**

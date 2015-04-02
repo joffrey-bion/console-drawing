@@ -3,8 +3,7 @@ package org.hildan.utils.console.drawing.progress;
 import org.hildan.utils.console.drawing.Drawing;
 
 /**
- * A extended version of {@link ReDrawnProgressBar} that includes a percentage
- * display.
+ * A extended version of {@link ReDrawnProgressBar} that includes a percentage display.
  */
 public class PercentProgressBar extends ReDrawnProgressBar {
 
@@ -14,8 +13,8 @@ public class PercentProgressBar extends ReDrawnProgressBar {
      * @param total
      *            The number of elements this {@code ProgressBar} represents.
      * @param length
-     *            The number of characters used to display this
-     *            {@code AbstractProgressBar} when it is complete.
+     *            The number of characters used to display this {@code AbstractProgressBar} when it
+     *            is complete.
      * @param mode
      *            The way to redraw this progress bar.
      */
