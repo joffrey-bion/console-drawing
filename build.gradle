@@ -34,20 +34,28 @@ artifacts {
 }
 
 bintray {
-	user = project.bintrayUsername //taken from gradle.properties
-	key = project.bintrayApiKey //taken from gradle.properties
+	user = project.bintrayUsername // taken from gradle.properties
+	key = project.bintrayApiKey // taken from gradle.properties
 	configurations = ['archives']
 	
+    publish = true // the version should be auto published after an upload
+	
 	pkg {
-	    repo = project.bintrayRepo //taken from gradle.properties
+	    repo = project.bintrayRepo // taken from gradle.properties
 	    name = project.name
 	    desc = 'A library to make your console output look nice, because little things matter.'
+	    
 	    websiteUrl = 'https://github.com/joffrey-bion/console-drawing'
 	    issueTrackerUrl = 'https://github.com/joffrey-bion/console-drawing/issues'
 	    vcsUrl = 'https://github.com/joffrey-bion/console-drawing.git'
+	    
 	    licenses = ['MIT']
+	    labels = ['console', 'print', 'grid', 'progress-bar', 'progress', 'bar']
+	    
+	    publicDownloadNumbers = false
+	    
 	    version {
-	        name = project.version //Bintray logical version name
+	        name = project.version // Bintray logical version name
 	    }
 	}
 }
