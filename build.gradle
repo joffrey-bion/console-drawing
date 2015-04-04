@@ -41,7 +41,7 @@ bintray {
     publish = true // the version should be auto published after an upload
 	
 	pkg {
-	    repo = project.bintrayRepo // taken from gradle.properties
+	    repo = project.bintrayRepoLibs // taken from gradle.properties
 	    name = project.name
 	    desc = 'A library to make your console output look nice, because little things matter.'
 	    
