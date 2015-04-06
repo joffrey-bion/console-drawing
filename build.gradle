@@ -1,6 +1,5 @@
-plugins {
-    id "com.jfrog.bintray" version "1.0"
-}
+// bintray plugin is used to upload artifacts to a bintray repo
+plugins { id "com.jfrog.bintray" version "1.0" }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -9,13 +8,9 @@ group = 'org.hildan.utils'
 version = '1.0.0'
 sourceCompatibility = '1.6'
 
-repositories {
-    mavenCentral()
-}
+repositories { mavenCentral() }
 
-dependencies {
-    testCompile 'junit:junit:4.+'
-}
+dependencies { testCompile 'junit:junit:4.+' }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -34,28 +29,24 @@ artifacts {
 }
 
 bintray {
-	user = project.bintrayUsername // taken from gradle.properties
-	key = project.bintrayApiKey // taken from gradle.properties
-	configurations = ['archives']
-	
+    user = project.bintrayUsername // taken from gradle.properties
+    key = project.bintrayApiKey // taken from gradle.properties
+    configurations = ['archives']
+
     publish = true // the version should be auto published after an upload
-	
-	pkg {
-	    repo = project.bintrayRepoLibs // taken from gradle.properties
-	    name = project.name
-	    desc = 'A library to make your console output look nice, because little things matter.'
-	    
-	    websiteUrl = 'https://github.com/joffrey-bion/console-drawing'
-	    issueTrackerUrl = 'https://github.com/joffrey-bion/console-drawing/issues'
-	    vcsUrl = 'https://github.com/joffrey-bion/console-drawing.git'
-	    
-	    licenses = ['MIT']
-	    labels = ['console', 'print', 'grid', 'progress-bar', 'progress', 'bar']
-	    
-	    publicDownloadNumbers = false
-	    
-	    version {
-	        name = project.version // Bintray logical version name
-	    }
-	}
+
+    pkg {
+        repo = project.bintrayRepoLibs // taken from gradle.properties
+        name = project.name
+        desc = 'A library to make your console output look nice, because little things matter.'
+        labels = ['console', 'print', 'grid', 'progress-bar', 'progress', 'bar']
+
+        String githubRepoName = project.name
+        websiteUrl = 'https://github.com/joffrey-bion/' + githubRepoName
+        issueTrackerUrl = 'https://github.com/joffrey-bion/' + githubRepoName + '/issues'
+        vcsUrl = 'https://github.com/joffrey-bion/' + githubRepoName + '.git'
+
+        licenses = ['MIT']
+        version { gpg { sign = true } }
+    }
 }
