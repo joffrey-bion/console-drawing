@@ -1,11 +1,16 @@
 // bintray plugin is used to upload artifacts to a bintray repo
-plugins { id "com.jfrog.bintray" version "1.0" }
+plugins { id "com.jfrog.bintray" version "1.6" }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
 
 group = 'org.hildan.utils'
-version = '1.0.0'
+version = '1.1.0'
+description = 'A library to make your console output look nice, because little things matter.'
+ext.labels = ['console', 'print', 'grid', 'progress-bar', 'progress', 'bar']
+
 sourceCompatibility = '1.6'
 
 repositories { mavenCentral() }
@@ -13,40 +18,51 @@ repositories { mavenCentral() }
 dependencies { testCompile 'junit:junit:4.+' }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
     from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
-artifacts {
-    archives jar
-    archives sourcesJar
-    archives javadocJar
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            // additional jars
+            artifact sourcesJar { classifier "sources" }
+            artifact javadocJar { classifier "javadoc" }
+        }
+    }
+}
+
+ext {
+    githubUser = project.hasProperty('githubUser') ? project.githubUser : System.getenv('GITHUB_USER')
+    githubRepoName = project.name
 }
 
 bintray {
-    user = project.bintrayUsername // taken from gradle.properties
-    key = project.bintrayApiKey // taken from gradle.properties
-    configurations = ['archives']
-
+    user = project.hasProperty('bintrayUsername') ? project.bintrayUsername : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.bintrayApiKey : System.getenv('BINTRAY_KEY')
+    publications = ['maven']
     publish = true // the version should be auto published after an upload
 
     pkg {
-        repo = project.bintrayRepoLibs // taken from gradle.properties
+        repo = project.hasProperty('bintrayRepoLibs') ? project.bintrayRepoLibs : System.getenv('BINTRAY_REPO_LIBS')
         name = project.name
-        desc = 'A library to make your console output look nice, because little things matter.'
-        labels = ['console', 'print', 'grid', 'progress-bar', 'progress', 'bar']
-
-        String githubRepoName = project.name
-        websiteUrl = 'https://github.com/joffrey-bion/' + githubRepoName
-        issueTrackerUrl = 'https://github.com/joffrey-bion/' + githubRepoName + '/issues'
-        vcsUrl = 'https://github.com/joffrey-bion/' + githubRepoName + '.git'
-
+        desc = project.description
+        labels = project.labels
         licenses = ['MIT']
-        version { gpg { sign = true } }
+
+        websiteUrl = 'https://github.com/' + githubUser + '/' + githubRepoName
+        issueTrackerUrl = 'https://github.com/' + githubUser + '/' + githubRepoName + '/issues'
+        vcsUrl = 'https://github.com/' + githubUser + '/' + githubRepoName + '.git'
+        githubRepo = githubUser + '/' + githubRepoName
+        githubReleaseNotesFile = 'README.md'
+
+        version {
+            vcsTag = 'v' + project.version
+            gpg { sign = true }
+        }
     }
 }
